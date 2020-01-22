@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MergeTools.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BAT_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Temp\</Value>
+    </Setting>
+    <Setting Name="LOG_TFS_BAT_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Temp\</Value>
+    </Setting>
+    <Setting Name="TFS_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\</Value>
+    </Setting>
+    <Setting Name="WINMERGE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\WinMerge\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
