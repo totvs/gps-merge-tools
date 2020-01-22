@@ -143,6 +143,7 @@
             this.MinimizeBox = false;
             this.Name = "ConfigurationForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurações";
             this.Load += new System.EventHandler(this.ConfigurationForm_Load);
             this.ResumeLayout(false);
