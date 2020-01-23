@@ -32,6 +32,17 @@ namespace MergeTools.Model
 
             return true;
         }
+
+        public static string FormatDirectory(string directory)
+        {
+            if (!directory.EndsWith("\\"))
+            {
+                return directory + "\\";
+            }
+
+            return directory;
+        }
+        
     }      
     
     

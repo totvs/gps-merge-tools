@@ -14,8 +14,6 @@ namespace MergeTools
 {
     public partial class ConfigurationForm : Form
     {
-        public bool UpdatePaths { get; set; } = false;
-
         public ConfigurationForm()
         {
             InitializeComponent();
@@ -37,12 +35,11 @@ namespace MergeTools
             }
             else
             {
-                PathsModel.BatPath = batPath.Text;
-                PathsModel.LogBatPath = logBatPath.Text;
-                PathsModel.TfsPath = tfsPath.Text;
-                PathsModel.WinmergePath = winmergePath.Text;
+                PathsModel.BatPath = PathsModel.FormatDirectory(batPath.Text);
+                PathsModel.LogBatPath = PathsModel.FormatDirectory(logBatPath.Text);
+                PathsModel.TfsPath = PathsModel.FormatDirectory(tfsPath.Text);
+                PathsModel.WinmergePath = PathsModel.FormatDirectory(winmergePath.Text);
 
-                UpdatePaths = true;
                 DialogResult = DialogResult.Yes;
                 Properties.Settings.Default.Save();
                 CloseForm(sender, e);
