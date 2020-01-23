@@ -44,7 +44,7 @@ namespace MergeTools
 
                     if (runBat.Checked)
                     {
-                        BatUtils.StartBat(mergeVersionBat);
+                        BatUtils.StartBat(mergeVersionBat,true);
                     }
                 }
                 catch (Exception ex)
@@ -125,7 +125,7 @@ namespace MergeTools
                 writer.WriteLine("tf workfold");
             }
 
-            var output = BatUtils.StartBat(tfsMapping).StandardOutput.ReadToEnd();
+            var output = BatUtils.StartBat(tfsMapping,false).StandardOutput.ReadToEnd();
             var formatted = output.Substring(output.IndexOf('$'));
             formatted = formatted.Replace('\r', ' ').Replace('\n', ';');
             var paths = formatted.Split(';');
