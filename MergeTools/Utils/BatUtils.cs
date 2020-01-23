@@ -4,7 +4,7 @@ namespace MergeTools.Utils
 {
     public static class BatUtils
     {
-        public static Process StartBat(string file,bool showConsole)
+        public static Process StartBat(string file, bool showConsole = true)
         {
             Process p = new Process();
             p.StartInfo.UseShellExecute = false;
@@ -14,6 +14,7 @@ namespace MergeTools.Utils
             if (!showConsole)
             {
                 p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                p.StartInfo.CreateNoWindow = true;
             }
                 
             p.Start();

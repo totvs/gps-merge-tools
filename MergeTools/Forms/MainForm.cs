@@ -44,7 +44,7 @@ namespace MergeTools
 
                     if (runBat.Checked)
                     {
-                        BatUtils.StartBat(mergeVersionBat,true);
+                        BatUtils.StartBat(mergeVersionBat);
                     }
                 }
                 catch (Exception ex)
