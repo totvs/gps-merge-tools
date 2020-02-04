@@ -17,6 +17,7 @@ namespace MergeTools
         public string StartMerge(string version, string csv)
         {
             var notExistList = new List<string>();
+            var deletedList = new List<string>();
             var lines = new List<string>();
             var bat = "cd " + PathsModel.WinmergePath + "\n";
             var logName = "LogTfsBat.txt";
@@ -37,7 +38,7 @@ namespace MergeTools
                 string[] str = line.Split(';');
 
                 var leftFile = str[1];
-                var rightFile = str[1];
+                var rightFile = str[1].Replace("V11.0","V11");
 
                 leftFile = leftFile.Replace('/', '\\');
 
@@ -55,8 +56,19 @@ namespace MergeTools
                     rightFile = rightFile.Replace(RightReplace[i], RightReplace[i + 1]);
                 }
 
-                //nao cooloca na branch do cliente fontes deletados
-                if (str[0].Contains("del")) continue;                
+                //nao cooloca na branch do cliente fontes deletados 
+                if (str[0].Contains("del")) continue;
+
+                
+                if (File.Exists(rightFile))
+                {
+                    //arquivo foi deletado na v11
+                    if (!File.Exists(leftFile))
+                    {
+                        deletedList.Add(line);
+                        continue;
+                    }
+                }
 
                 if (!File.Exists(rightFile))
                 { //se nao existe na branch do cliente
@@ -94,7 +106,7 @@ namespace MergeTools
             {
                 string[] str = line.Split(';');
 
-                string rightFile = str[1];
+                string rightFile = str[1].Replace("V11.0","V11");
                 rightFile = rightFile.Replace(RightReplace[0], RightReplace[1]);
 
                 StringBuilder sb = new StringBuilder();
@@ -103,6 +115,10 @@ namespace MergeTools
                 if (notExistList.Contains(line))
                 {
                     sb.Append("add ");
+                }
+                else if (deletedList.Contains(line))
+                {
+                    sb.Append("delete ");
                 }
                 else
                 {
