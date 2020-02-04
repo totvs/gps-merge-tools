@@ -132,7 +132,7 @@ namespace MergeTools
                 bat += sb.ToString() + "\n";
             }
 
-            bat += $"msg * \"Arquivo .bar para versão {version} executado com sucesso.\"";
+            bat += $"msg * \"Arquivo .bat para versao {version} executado com sucesso.\"";
 
             var batFile = PathsModel.BatPath + "merge" + version + ".bat";
             using (StreamWriter writer = new StreamWriter(File.Create(batFile)))
