@@ -35,12 +35,13 @@ namespace MergeTools
 
             foreach(var version in VersionsList.Items)
             {
+                MergeTool = new MergeTool();
                 V11toTS(version.ToString());
 
                 try
                 {
                     var mergeVersionBat = MergeTool.StartMerge(version.ToString(), csvPath.Text);
-                    MessageBox.Show("Arquivo .bat gerado com sucesso.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Arquivo .bat para versão {version} gerado com sucesso.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     if (runBat.Checked)
                     {
@@ -52,7 +53,8 @@ namespace MergeTools
                     MessageBox.Show($"Houve erro na geração do arquivo .bat para versão {version}: {ex}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
-            } 
+            }
+
         }       
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
@@ -96,6 +98,7 @@ namespace MergeTools
             }
 
             removeButton.Enabled = !VersionsList.Items.Count.Equals(0);
+
         }
         /**
          * Realiza chamada para o form de configurações
