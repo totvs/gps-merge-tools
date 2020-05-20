@@ -88,8 +88,8 @@ namespace MergeTools
             }
 
             bat += "break>\"" + PathsModel.LogBatPath + logName + "\"\n";
-            bat += "cd \""+ PathsModel.TfsPath + "\"\n"; 
-            
+            bat += "cd \""+ PathsModel.TfsPath + "\"\n";
+
             foreach(var line in lines)
             {
                 string[] str = line.Split(';');
@@ -112,10 +112,13 @@ namespace MergeTools
                 sb.Append("/lock:checkin \"");
                 sb.Append(rightFile);
                 sb.Append("\" >> \"" + PathsModel.LogBatPath + logName + "\" 2>&1");
+                sb.Append("\n");
+                sb.Append("IF %ERRORLEVEL%==1 set erro=%ERRORLEVEL%");
 
                 bat += sb.ToString() + "\n";
             }
 
+            bat += "if %erro%==1 " + PathsModel.LogBatPath + logName + "\n";
             bat += $"msg * \"Arquivo .bar para versão {version} executado com sucesso.\"";
 
             var batFile = PathsModel.BatPath + "merge" + version + ".bat";
