@@ -19,6 +19,7 @@ namespace MergeTools
         {
             var notExistList = new List<string>();
             var deletedList = new List<string>();
+            var deletedInTwoBranch = new List<string>();
             var lines = new List<string>();
             var bat = "cd " + PathsModel.WinmergePath + "\n";
             var logName = "LogTfsBat.txt";
@@ -78,6 +79,7 @@ namespace MergeTools
                     //Não existe nas duas branchs
                     if (!File.Exists(leftFile))
                     {
+                        deletedInTwoBranch.Add(line);
                         continue;
                     }
                 }
@@ -116,6 +118,11 @@ namespace MergeTools
 
             foreach(var line in lines)
             {
+                if(deletedInTwoBranch.Contains(line))
+                {
+                    continue;
+                }
+
                 string[] str = line.Split(';');
 
                 string rightFile = str[1].Replace("V11.0","V11");
