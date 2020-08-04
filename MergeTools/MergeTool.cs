@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 
 namespace MergeTools
 {
@@ -37,7 +38,9 @@ namespace MergeTools
             {
                 string[] str = line.Split(';');
 
+                //V11
                 var leftFile = str[1];
+                //Versão do cliente
                 var rightFile = str[1].Replace("V11.0","V11");
 
                 leftFile = leftFile.Replace('/', '\\');
@@ -59,13 +62,22 @@ namespace MergeTools
                 //nao cooloca na branch do cliente fontes deletados 
                 if (str[0].Contains("del")) continue;
 
-                
                 if (File.Exists(rightFile))
                 {
                     //arquivo foi deletado na v11
                     if (!File.Exists(leftFile))
                     {
+                        bat += "DEL \"" + new FileInfo(rightFile).DirectoryName + "\"\n";
+
                         deletedList.Add(line);
+                        continue;
+                    }
+                }
+                else
+                {
+                    //Não existe nas duas branchs
+                    if (!File.Exists(leftFile))
+                    {
                         continue;
                     }
                 }
