@@ -68,7 +68,7 @@ namespace MergeTools
                     //arquivo foi deletado na v11
                     if (!File.Exists(leftFile))
                     {
-                        bat += "DEL \"" + new FileInfo(rightFile).DirectoryName + "\"\n";
+                        bat += "DEL \"" + rightFile + "\"\n";
 
                         deletedList.Add(line);
                         continue;
